@@ -14275,7 +14275,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Analysis-of-Red-Bull-Racing-and-Mercedes-Benz-AMG-F1-Racing-Dynasties">Analysis of Red Bull Racing and Mercedes Benz AMG F1 Racing Dynasties<a class="anchor-link" href="#Analysis-of-Red-Bull-Racing-and-Mercedes-Benz-AMG-F1-Racing-Dynasties">&#182;</a></h1>
+<h1 id="Analysis-of-Red-Bull-Racing-and-Mercedes-Benz-AMG-F1-Racing-Dynasties">Analysis of Red Bull Racing and Mercedes Benz AMG F1 Racing Dynasties<a class="anchor-link" href="#Analysis-of-Red-Bull-Racing-and-Mercedes-Benz-AMG-F1-Racing-Dynasties">&#182;</a></h1><h4 id="Upneet-Bir">Upneet Bir<a class="anchor-link" href="#Upneet-Bir">&#182;</a></h4>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -14289,6 +14289,8 @@ a.anchor-link {
 Our objective in this tutorial is to take a look at two of the most recent dominating teams. Red Bull Racing Honda and Mercedes Benz AMG F1.
 From 2010 - 2013, Red Bull won four straight championships as a team. Mercedes Benz is currently on a 7 year win streak of championships
 For our analysis we will look at Red Bull from 2010 - 2013 and Mercedes Benz from 2016 - 2019</p>
+<p>How can we compare these teams success if they raced in two different generations?</p>
+<p>Within Formula 1, there are specific categories that have stayed the same.</p>
 <p>The major categories we will look at are:</p>
 <ol>
 <li>Winning Percentage</li>
@@ -14296,6 +14298,7 @@ For our analysis we will look at Red Bull from 2010 - 2013 and Mercedes Benz fro
 <li>Qualifying Exploration</li>
 <li>Starting at Pole Analysis<!-- 5. How Does First Place Compare to Second? --></li>
 </ol>
+<p>My hypothesis is that Mercedes Benz will be the better team in most of these categories, especially Winning Percentage. This is solely because I have watched F1 for the past 2 years so all I know is Mercedes Benz winning the championships.</p>
 
 </div>
 </div>
@@ -14307,13 +14310,15 @@ For our analysis we will look at Red Bull from 2010 - 2013 and Mercedes Benz fro
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[472]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[515]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">drivers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;drivers.csv&quot;</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;results.csv&quot;</span><span class="p">)</span>
 <span class="n">race</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;races.csv&quot;</span><span class="p">)</span>
 <span class="n">constructors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;constructors.csv&quot;</span><span class="p">)</span>
+<span class="n">c_standings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;constructor_standings.csv&quot;</span><span class="p">)</span>
+<span class="n">c_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;constructor_results.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14668,6 +14673,12 @@ For our analysis we will look at Red Bull from 2010 - 2013 and Mercedes Benz fro
 
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>So now we have the races between 2010 - 2013 for Red Bull Racing and can start our analysis</p>
+
+</div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -15210,6 +15221,7 @@ success than Red Bull. There was over 15% more podium percentage and 10 percent 
 <h2 id="Step-1-Results-and-Analysis">Step 1 Results and Analysis<a class="anchor-link" href="#Step-1-Results-and-Analysis">&#182;</a></h2><p>So now, comparing the amazing success of these teams we see that Mercedes Benz over these four years had more
 success than Red Bull. There was over 15% more podium percentage and 10 percent more winning percentage</p>
 <p>So far, we see that Mercedes has the upper hand when it comes to winning races and finishing in the top 3 in general.</p>
+<p>To recap on Step 1, one alternative to our data wrangling apprach would be to manually go through and select the records we want</p>
 
 </div>
 </div>
@@ -15281,7 +15293,7 @@ That means 7.228915662650602 % of races resulted in a DNF over this period of ti
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h4 id="What-can-we-take-away-from-this-step?">What can we take away from this step?<a class="anchor-link" href="#What-can-we-take-away-from-this-step?">&#182;</a></h4><p>Before I started this step I predicted that there would not be too much of a difference in the DNF data because its possible a Red Bull or Mercedes fell out of the points but still finished the race and it wasn't reflected in our data.</p>
-<p>After looking at the statistical data in this step, I see that I was wrong. The difference between these two teams was over 5% or 7 races which means that over a higher amount of races, Mercedes Benz was far more consistent than Red Bull was even though Red Bull had a slightly smaller data sample. (166 races for MB vs 154 races for RB)</p>
+<p>After looking at the statistical data in this step, I see that I was wrong. The difference between these two teams was over 5% or 7 races which means that over a higher amount of races, Mercedes Benz was more consistent than Red Bull was even though Red Bull had a slightly smaller data sample. (166 races for MB vs 154 races for RB)</p>
 <h4 id="What-we-can-try-to-do-is-see-how-efficient-they-were-compared-to-other-teams-at-the-time.">What we can try to do is see how efficient they were compared to other teams at the time.<a class="anchor-link" href="#What-we-can-try-to-do-is-see-how-efficient-they-were-compared-to-other-teams-at-the-time.">&#182;</a></h4><p>The next most important thing to look at is qualifying data. How good was the car at starting position? 
 This gives us a sense of the ability of the car without traffic and without wear and tear. So peak performance</p>
 <p>This will be step 3: Qualifying Exploration</p>
@@ -15386,14 +15398,14 @@ make the data more readible</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Step-3-Analysis">Step 3 Analysis<a class="anchor-link" href="#Step-3-Analysis">&#182;</a></h3><p>From our Step 3 work we do not get much information that is going to be useful. Here we do see that MB started from pole more often and 2nd and 3rd more often.</p>
+<h3 id="Step-3-Analysis">Step 3 Analysis<a class="anchor-link" href="#Step-3-Analysis">&#182;</a></h3><p>From our Step 3 work we don't get any data that will help lead us to a conlcusion about the qualifying performances of these cars. Here we do see that MB started from pole more often and 2nd and 3rd more often than Red Bull did. But still there is no conclusive advantage to either team. We can resonably conlcude that both teams were just as equal in their qualifying periods</p>
 <p>We need to take a closer look into this data. How did these teams fair when starting from pole? Which team was able to convert their pole positions into Wins and which team "blew it" more often?</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Data-Exploration-Step-4-Starting-at-Pole-Analysis">Data Exploration Step 4 Starting at Pole Analysis<a class="anchor-link" href="#Data-Exploration-Step-4-Starting-at-Pole-Analysis">&#182;</a></h2><p>Lets take a look at how successful each team was at converting the best starting position on the grid into a win. And if they didn't win, how far down the order did they drop?</p>
+<h2 id="Data-Exploration-Step-4-Starting-at-Pole-Exploration">Data Exploration Step 4 Starting at Pole Exploration<a class="anchor-link" href="#Data-Exploration-Step-4-Starting-at-Pole-Exploration">&#182;</a></h2><p>Lets take a look at how successful each team was at converting the best starting position on the grid into a win. And if they didn't win, how far down the order did they drop?</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15516,38 +15528,59 @@ make the data more readible</p>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Step-4-Analysis">Step 4 Analysis<a class="anchor-link" href="#Step-4-Analysis">&#182;</a></h3><p>So looking at the plots, we can see that while both performed very well from pole generally, Red Bull lost more than 5 positions 6 times from pole. 
 Mercedes, on the other hand, only lost more than 5 positions from pole 4 times.</p>
+<p>Even towards the top of the table (within 0 to -5 places lost) we see a much tighter clustering of points. The way we can test this is by getting the average of positions lost.</p>
 <p>My hypothesis looking at the scatterplots is that Mercedes Benz is much better at getting and keeping the lead</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Lets go further into the data and find the chances that</p>
-<ol>
-<li>Red Bull start and finish 1st</li>
-<li>Mercedes start and finish 1st</li>
-</ol>
+<p>Red Bull start and finish 1st
+Mercedes start and finish 1st
+Complete a Hypothesis Test</p>
+<p><strong>Hypothesis: A driver for Mercedes Benz F1 was starting on pole was more likely to finish and win the race</strong></p>
+<p>Null Hypothesis: A driver for MB is not more likely to win a race when starting on pole than RB</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[456]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[510]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># This is simply taking the amount of 0s in every array and dividing by length of that array</span>
 <span class="n">no_change_redbull</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">total_lost_redbull</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">outliers_excluded_redbull</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pole_distance_redbull</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">no_change_redbull</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">5</span><span class="p">:</span>
+        <span class="n">outliers_excluded_redbull</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">total_lost_redbull</span> <span class="o">+=</span> <span class="n">i</span>
+<span class="n">avg_lost_redbull</span> <span class="o">=</span> <span class="n">total_lost_redbull</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">pole_distance_redbull</span><span class="p">)</span>
+<span class="n">excluded_redbull</span> <span class="o">=</span> <span class="n">outliers_excluded_redbull</span><span class="o">/</span><span class="n">c</span>
 <span class="n">no_change_redbull</span> <span class="o">=</span> <span class="p">(</span><span class="n">no_change_redbull</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">pole_distance_redbull</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
 
 <span class="n">no_change_benz</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">total_lost_benz</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">outliers_excluded_benz</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">c_benz</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pole_distance_benz</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">no_change_benz</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">5</span><span class="p">:</span>
+        <span class="n">outliers_excluded_benz</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">c_benz</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">total_lost_benz</span> <span class="o">+=</span> <span class="n">i</span>
+<span class="n">avg_lost_benz</span> <span class="o">=</span> <span class="n">total_lost_benz</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">pole_distance_benz</span><span class="p">)</span>
+<span class="n">excluded_benz</span> <span class="o">=</span> <span class="n">outliers_excluded_benz</span><span class="o">/</span><span class="n">c_benz</span>
 <span class="n">no_change_benz</span> <span class="o">=</span> <span class="p">(</span><span class="n">no_change_benz</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">pole_distance_benz</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Red Bull Average Places Lost:&quot;</span><span class="p">,</span> <span class="n">avg_lost_redbull</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mercedes Benz Average Places Lost:&quot;</span><span class="p">,</span><span class="n">avg_lost_benz</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Red Bull Average Places lost between 0 to -5:&quot;</span><span class="p">,</span><span class="n">excluded_redbull</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mercedes Benz Average Places lost between 0 to -5:&quot;</span><span class="p">,</span><span class="n">excluded_benz</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Red Bull Start and Finish Pole Percentage:&quot;</span><span class="p">,</span> <span class="n">no_change_redbull</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mercedes Benz Start and Finish Pole Percentage:&quot;</span><span class="p">,</span><span class="n">no_change_benz</span><span class="p">)</span>
 </pre></div>
@@ -15569,7 +15602,15 @@ Mercedes, on the other hand, only lost more than 5 positions from pole 4 times.<
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Red Bull Start and Finish Pole Percentage: 50.0
+<pre>Red Bull Average Places Lost: -2.2884615384615383
+Mercedes Benz Average Places Lost: -1.5517241379310345
+
+
+Red Bull Average Places lost between 0 to -5: 1.0
+Mercedes Benz Average Places lost between 0 to -5: 1.0
+
+
+Red Bull Start and Finish Pole Percentage: 50.0
 Mercedes Benz Start and Finish Pole Percentage: 60.3448275862069
 </pre>
 </div>
@@ -15582,22 +15623,36 @@ Mercedes Benz Start and Finish Pole Percentage: 60.3448275862069
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>What we see from this data is that Mercedes is much more efficient at starting and finishing from pole position. An advantage of over more than 10% compared to Red Bull.</p>
+<p>What we see from this data is that Mercedes is much more efficient at starting and finishing from pole position. An advantage of over more than 10% compared to Red Bull. Also that a MB driver is more likely to win from pole than RB.</p>
+<p>Some more points to take away from this calculation was that Mercedes Benz did infact have less places lost overall, by about 0.7 places.</p>
+<p>Now while doing that I decided that looking at the spread within (0 to -5) should be done by looking at all values outside of -5 as outliers. So looking at the output provided there I can conclude that there is no difference in the average places lost within 0 to -5. Both lost 1.0 places on average.</p>
 <p>The whole idea of this analysis was to see which car performed better at staying ahead. Qualifying allowed both teams to fully show their teams engineering potential when there is no traffic on track and perfect conditions for the car to succeed. The race day data challenges the teams to work on their stategical powers and stay ahead. So our data shows us that Mercedes Benz stategists were much better overall at keeping their leads in the race and the drivers were more efficient at navigating through traffic and extending their lead in open air (open air allows for better aerodynamic performance for cars = faster lap times)</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Conclusion-and-Understanding">Conclusion and Understanding<a class="anchor-link" href="#Conclusion-and-Understanding">&#182;</a></h2><p>Now that we have explored all this data, what conclusions can we draw?
-We can see that Mercedes Benz had a higher success rate in all the major categories.</p>
-<p>The major categories we looked at were:</p>
+<h2 id="Conclusion-and-Understanding">Conclusion and Understanding<a class="anchor-link" href="#Conclusion-and-Understanding">&#182;</a></h2><p>Now that we have explored all this data, <strong>what conclusions can we draw</strong>?</p>
+<p>To summarize the major categories we looked at were:</p>
 <ol>
 <li>Winning Percentage</li>
 <li>DNF (Did Not Finish) Percentage</li>
 <li>Qualifying Exploration</li>
 <li>Starting at Pole Analysis</li>
 </ol>
+<p><strong>Why did I take this approach?</strong></p>
+<p>The reason I took this approach was too take a high to low look at the data. So I wanted to start by looking at the winning percentage of the team which is the first thing that comes to mind. After that I wanted to move onto consistency of the teams, then looking at the deeper reasons for success which come before the day of the race. So seeing how these teams qualified onto the grid and then lastly seeing which team did the best with the opportunity.</p>
+<p><strong>Results of this Analysis</strong></p>
+<p>This data set did not have data associated to the results of constructors standings in 2010 and forward. So after some simple googling I found this data:</p>
+<p>2013:</p>
+<p>1st Place - Red Bull 596</p>
+<p>2nd Place - Mercedes Benz 360</p>
+<p>Difference: 236</p>
+<p>2019:</p>
+<p>1st Place - Mercedes Benz 739</p>
+<p>2nd Place - Ferrari 504</p>
+<p>Difference: 235</p>
+<p>I can see that both Mercedes Benz and Red Bull won the championships by the same margin (off by 1 pt).</p>
 <p>Mercedes edged out Red Bull in all of these categories. 
 From 2016 - 2019, Mercedes displayed a dominance that was unparalleled in this age. With a podium percentage of over 69% and a winning percentage of over 34%, Mercedes showed that its amazing engineering and large budget paid off with 4 straight constructor titles</p>
 <h4 id="What-should-we-walk-away-with?">What should we walk away with?<a class="anchor-link" href="#What-should-we-walk-away-with?">&#182;</a></h4><p>Formula 1 teams are consistently trying to improve and inovate on pervious success and failure. The whole point of this analysis and tutorial was to show the recipe of success for these teams. Both teams succeeded not because they won many races (which they did) but because of their consistentcy. The whole point of racing is to be an unpredictable sport. The driver errors, crashes, and new rule regulations are supposed to make F1 unpredictable. For example in the 2020 F1 season there was a 3 way tie for the 3rd place in constructors title championship, Ferrari F1 plummeted down the standings from 2nd in 2019 to 6th in 2020. To summarize, F1 and racing was created to be a world of unpredictabliliy and excitement. Mercedes Benz and Red Bull in their winning streaks were able to reverse that and create their dynasties. They created a sense of normal in the racing community that led to Sebatian Vettel's 9 GP wins in a row and memes about how every race podium would be the same because Mercedes Benz were so dominant.</p>
@@ -15609,6 +15664,20 @@ From 2016 - 2019, Mercedes displayed a dominance that was unparalleled in this a
 One thing I could look into, if in a bigger group rather than myself, would be to see how efficiently teams spend money. Just like our Moneyball project. There was also no table that contained the budgets for F1 teams</p>
 
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div>
 </body>
 
