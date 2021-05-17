@@ -14676,104 +14676,7 @@ For our analysis we will look at Red Bull from 2010 - 2013 and Mercedes Benz fro
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>So now we have the races between 2010 - 2013 for Red Bull Racing and can start our analysis</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Red-Bull-Data-Exploration-Step-1">Red Bull Data Exploration Step 1<a class="anchor-link" href="#Red-Bull-Data-Exploration-Step-1">&#182;</a></h2>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[474]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">time_frame</span><span class="p">[</span><span class="s1">&#39;positionOrder&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Red Bull F1 Team Finishing Positions Frequency Chart&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of Times&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Position Finished&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># Creating a map which will count the frequency of each finishing position from 2010 - 2013</span>
-<span class="n">redbull_dict</span> <span class="o">=</span> <span class="p">{}</span>
-
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="n">time_frame</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;positionOrder&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">redbull_dict</span><span class="p">:</span>
-        <span class="n">redbull_dict</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;positionOrder&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">redbull_dict</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;positionOrder&#39;</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
-
-<span class="c1"># Calculating the winning percentage and the podium percentage </span>
-<span class="n">wins_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">redbull_dict</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">166</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
-<span class="n">total_podiums</span> <span class="o">=</span> <span class="n">redbull_dict</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">redbull_dict</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">redbull_dict</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">podiums_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_podiums</span><span class="o">/</span><span class="mi">166</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;We can see that Red Bull F1 made it to the podium&quot;</span><span class="p">,</span><span class="n">podiums_ratio</span><span class="p">,</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f the time and won the race&quot;</span><span class="p">,</span><span class="n">wins_ratio</span><span class="p">,</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f the time&quot;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedImage jp-OutputArea-output ">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAl4AAAFPCAYAAACcQ8AlAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjMuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/Il7ecAAAACXBIWXMAAAsTAAALEwEAmpwYAAAohUlEQVR4nO3de9x19Zz/8ddbhVI66JZOuknML4du3HLIEJXpXJoxDoOE4ofB78fQGEOGGeknxmlQSnekJCQqSpRx7u5cQg4hne5SKtLx8/tjrWvsLtdh34e19r6v+/V8PPZj773WXuv72Wvt69rv/V3fvXaqCkmSJHXvXqMuQJIkaVVh8JIkSeqJwUuSJKknBi9JkqSeGLwkSZJ6YvCSJEnqicFLc0qSg5J8uqN1vyTJtwfuV5KHddHWyibJqUn2XZGPnWn7JvmHJKctbZ2jkOQtST4xw/yV5rmsapKcmeTlo65Dc4vBSyOX5PIktya5JcnVSY5KsnYH7Wyf5O62nVuS/DbJO1Z0O21bZyb500BbtyR5cjvvnUkuSnJnkoNmWMfHBpa9PckdA/dP7aLu2bT75vZJz+u5VbVLVS0aZh1L89gZ1nFMVT1redYxnUmvx2uSfHJ5Xo9V9R9V9fJ23fPbQLn6wPzOnst0Jj3HicsmfdYwDpLcu/2wdlmSP7Tb5cgk8ztq76gk7+pi3Vp5GLw0LvaoqrWBBcBjgX/uqJ0rq2rttq2nAi9LsndHbb1moq328r12+s+ANwEnz7RwVb1yoNb/AD47sK5dOqp5GIdMel6fHWEtXZl4PT4OeALw1hHX04U9Ju3HKwdnDobDOewEYE/gBcC6wDbAOcAOK7qhJKut6HVq5WTw0lipqquBr9EEMACSPCnJd5PcmOSCJNsPzHtIkrOS3JzkdGDDpWjrl8B3ga3bdf1Fb0QXhxqqalFVnQrcvKzrmGWb7Jfk0nab/CLJKwbmbZ/kiiRvSnJtkquS7J1k1yQ/TfK7JG9Zhnr+ZztNHJJN8t4kNyT5ZZJdpnnsw9r99/sk1yWZHOJ2bHsjbkjykSQZbGNgnZXkldM8drUkh7br/2WS10zez9Opqt8CpwKPate1Z5JL2u1+ZpL/NVDDm9P0ot6c5CdJdminDx7+/lZ7fWPby/TkKZ7LU5Kc3W6Ts5M8ZdK2e2eS77TtnJZkw3befZN8Osn1bX1nJ9lotuc4qN0ur05yGXBZO233JOe36/xukscMPP6xSc5ta/lskuPS9uhMfl4D639Ye/s+7Wvk12l6Fj+WZM123sTr9A0Dr9P9BtazZrtPf9Vup2+3005O8o+T2rwwU3y4SrIjsBOwV1WdXVV3VtXvq+ojVXXEwEO3mGp7t+v4XJpe+t8n+VaSRw7MOyrJR5OckuQPwMuAfwDe1O77Ly/NvtHcYfDSWEmyGbALTa8QSTal6Rl6F7AB8Ebg80nmtYt8huYT6obAO4Ghxhm1694K2A74/oqqvw9DbJNrgd2B+wP7Ae9P8riBVTwIuC+wKfA24HDghcDjgb8G3pbkoctZ5hOBn9Dsl0OAIyaC0CTvBE4D1gc2Az40af7uND1O2wB/D/zNDG1O99j9aV5TC2h6sPYe9kkk2RzYFTgvycOBY4HXA/OAU4Avpzlc9QjgNcATqmqdtu3Lp1jl09rr9Sb1gk60twHNvv0g8ADgfcDJSR4w8LAX0OzXBwL3ptn/0Lz21wU2b5d9JXDrsM91wN40+2/r9nVzJPCKdp0fB05qQ9O9gROBT9G8Dj8H/O1StPMe4OE0++Vh/Pn1OOFB7fPZlCa0fCTJ+u2899K8Xp/Stv0m4G5gEc1rGYAk27TLnzJF+zsCP6yq38xS53TbG5pQvlU771zgmCmW/XdgHeDodv5Ej/Ees7SrOcrgpXFxYpKbgd/QBIe3t9NfCJxSVadU1d1VdTqwGNg1yYNp3mj/tapuq6pvAbN9ityk/eR+E/BT4AfAt2dZZll9sG3rxiTnrsD1TrtNAKrq5Kr6eTXOogk2fz2w/B3Av1fVHcBxNOHoA1V1c1VdAlwCPIbpvXHgeV03zWN+VVWHV9VdNG+GGwNT9b7cAWwBbFJVf6qqyfvi4Kq6sap+DXyTgZ7QKUz32L9vn98VVXUDcPAM65hwYpIbaV4bZ9Ec6n0ucHJVnd5uu/cCa9K8+d8F3IcmrKxRVZdX1c+HaGey3YDLqupTbQ/MscCPgcE36U9W1U+r6lbg+IHneQdNOHpYVd1VVedU1U2zPcf2cuLA9HdX1e/a9e8PfLyqftCucxFwG/Ck9rIG8J9VdUdVnQCcPcyTbEP4/sD/adu6mWYbP2/gYXcA/9au+xTgFuARSe4FvBR4XVX9tq3ru1V1G/AlYKv2QxXAi2gO0d8+RRkPAK4aotzptjdVdWT7d3MbcBCwTZJ1B5b9UlV9p/07/dMQbWkVYPDSuNi77SnYHvgr/nzIcAvgOQNvEDfSjM3aGNgEuKGq/jCwnl/N0s6VVbVeVd0fWI+mR2C5BnrP4LVtW+tV1eNmf/jQZtomJNklyffTHDa8kSaQDR6Cvb4NRPDnHpFrBubfCsw0mPy9A89rukO7V0/cqKo/tjenWuebgAA/THMI76XTrQf44yx1TffYTWgC/YTZejigeT2uV1VbVNWr2jfdTRh4fVXV3e26Nq2qn9H0hB0EXNsecluWwer3aKP1K5pemwnTPc9P0RymPy7JlUkOSbLGDG3tPbAf9x6YPrh9tgDeMOm1tnlb5ybAb6uqJtU6jHnAWsA5A+v9ajt9wvVVdecUz3VDmh7bvwi2bQA6HnhhG9CeT7NdpnI97d/MLKbc3mkOYR+c5OftB7nL28cM/k0M81rTKsbgpbHS9tAcRdObAM0/rk8NvEGsV1X3q6qDaT6trp/kfgOrePBStPV7mkOVE70JEwFurYGHPWgZnkbXpt0mSe4DfJ5m+21UVevRHGaZ6jDfyFXV1VW1f1VtQnM467+y4k/RcRXNYcwJmy/jeq6kCSLA//TabA78FqCqPlNVT20fUzSH0iarKaZN20brwRNtzKTtGXpHVW1N0wu3O/Di2Zabpcbf0PSODr7W1mp74q4CNp10CHnw7+8PDPwtJRn8W7qOJuA/cmC961bzhYbZXAf8CdhymvmLaMZS7QD8sSYdzh3wdWDbdnjDsngBsBfNIct1gfnt9MHtMXl/z7b/tQoweGkc/SewU5IFwKeBPZL8TfsJ877twNvNqupXNIfY3tGOs3kq9zwkM6M0pwh4Hs2hNapqCc0b3Avbtl7K9P/cl1mSNZLcl+bvb/X2OS3NN56m3SY0Y1DuAywB7kwzqL3XUxUsjSTPGXjju4HmjemuGRZZFscDr0uyaZL1gDcvx3p2S7JD25P0BprDbt9N8ogkz2yD759oQsVUz2MJzVik6cbQnQI8PMkLkqye5Lk0X/74ymzFJXlGkke3r6WbaA7VLe+2PBx4ZZInpnG/JLslWQf4HnAn8Nq21n2AbQeWvQB4ZJIF7ev9oIkZbW/h4TTjDx/Y1r9pkpnG8A0ueyTwviSbtH8DT263PW3Quhs4lOl7u6iqrwOnA19M8vj2OayT5ksak3tep7IOzf6/niZg/scQy1zD9PteqwiDl8ZOG4COphm79RuaT5VvoXnT+g3wT/z5tfsCmoHAv6MZF3b0LKvfJO15i2gOi2xA8+l4wv7t+q8HHknzrccV7XCaN+bnA//S3n7RsAvPtE3asTKvpQkJN9Bsn5NWZPEr2BOAH7T74ySacTu/XMFtHE4zzu1C4DyacHMnSxlKquonNOPrPkTT67IHzSkZbqcJuwe306+mGWz9F98ObQ+7/jvwnfYQ25Mmzb+epqfqDTSvwTcBu1fVdGPpBj2I5vQINwGX0oxNW66TCVfVYpq/iQ/TvJ5+BryknXc7sE97/waaMXBfGFj2p8C/0fQsXcZfjqV8c7u+77eH6r4OPGLI0t4IXEQzpux3NL2Lg+9nRwOPZvbn/3c0r4fPAr8HLgYWtrXM5mia/yG/BX7EcF/SOYJmHODkcXVaheSeh+claW5rewE/VlWTD+lpOSU5CriiqkZ63rMkLwYOaA/9SmPFHi9Jc1qa8zvt2h5K2pSmZ/SLo65L3UiyFvAq4LBR1yJNxeAlaa4L8A6aw2Hn0RyGe9uMS2il1I4RW0IzluozIy5HmpKHGiVJknpij5ckSVJPVoofQd1www1r/vz5oy5DkiRpVuecc851VTVvqnkrRfCaP38+ixcvHnUZkiRJs0oy7a84eKhRkiSpJwYvSZKknhi8JEmSemLwkiRJ6onBS5IkqScGL0mSpJ4YvCRJknpi8JIkSeqJwUuSJKknBi9JkqSeGLwkSZJ6slL8VuNs5h948nKv4/KDd1sBlUiSJE3PHi9JkqSeGLwkSZJ60nnwSrJakvOSfKW9v0GS05Nc1l6v33UNkiRJ46CPHq/XAZcO3D8QOKOqtgLOaO9LkiTNeZ0GrySbAbsBnxiYvBewqL29CNi7yxokSZLGRdc9Xv8JvAm4e2DaRlV1FUB7/cCOa5AkSRoLnQWvJLsD11bVOcu4/AFJFidZvGTJkhVcnSRJUv+67PHaDtgzyeXAccAzk3wauCbJxgDt9bVTLVxVh1XVwqpaOG/evA7LlCRJ6kdnwauq/rmqNquq+cDzgG9U1QuBk4B924ftC3ypqxokSZLGySjO43UwsFOSy4Cd2vuSJElzXi8/GVRVZwJntrevB3boo11JkqRx4pnrJUmSemLwkiRJ6onBS5IkqScGL0mSpJ4YvCRJknpi8JIkSeqJwUuSJKknBi9JkqSeGLwkSZJ6YvCSJEnqicFLkiSpJwYvSZKknhi8JEmSemLwkiRJ6onBS5IkqScGL0mSpJ4YvCRJknpi8JIkSeqJwUuSJKknBi9JkqSeGLwkSZJ6YvCSJEnqicFLkiSpJ50FryT3TfLDJBckuSTJO9rpByX5bZLz28uuXdUgSZI0TlbvcN23Ac+sqluSrAF8O8mp7bz3V9V7O2xbkiRp7HQWvKqqgFvau2u0l+qqPUmSpHHX6RivJKslOR+4Fji9qn7QznpNkguTHJlk/WmWPSDJ4iSLlyxZ0mWZkiRJveg0eFXVXVW1ANgM2DbJo4CPAlsCC4CrgEOnWfawqlpYVQvnzZvXZZmSJEm96OVbjVV1I3AmsHNVXdMGsruBw4Ft+6hBkiRp1Lr8VuO8JOu1t9cEdgR+nGTjgYc9G7i4qxokSZLGSZffatwYWJRkNZqAd3xVfSXJp5IsoBlofznwig5rkCRJGhtdfqvxQuCxU0x/UVdtSpIkjTPPXC9JktQTg5ckSVJPDF6SJEk9MXhJkiT1xOAlSZLUE4OXJElSTwxekiRJPTF4SZIk9cTgJUmS1BODlyRJUk8MXpIkST0xeEmSJPXE4CVJktQTg5ckSVJPDF6SJEk9MXhJkiT1xOAlSZLUE4OXJElSTwxekiRJPTF4SZIk9cTgJUmS1BODlyRJUk8MXpIkST3pLHgluW+SHya5IMklSd7RTt8gyelJLmuv1++qBkmSpHHSZY/XbcAzq2obYAGwc5InAQcCZ1TVVsAZ7X1JkqQ5r7PgVY1b2rtrtJcC9gIWtdMXAXt3VYMkSdI46XSMV5LVkpwPXAucXlU/ADaqqqsA2usHTrPsAUkWJ1m8ZMmSLsuUJEnqRafBq6ruqqoFwGbAtkketRTLHlZVC6tq4bx58zqrUZIkqS+9fKuxqm4EzgR2Bq5JsjFAe31tHzVIkiSNWpffapyXZL329prAjsCPgZOAfduH7Qt8qasaJEmSxsnqHa57Y2BRktVoAt7xVfWVJN8Djk/yMuDXwHM6rEGSJGlsdBa8qupC4LFTTL8e2KGrdiVJksaVZ66XJEnqicFLkiSpJwYvSZKknhi8JEmSemLwkiRJ6onBS5IkqScGL0mSpJ7MGrySHJLk/knWSHJGkuuSvLCP4iRJkuaSYXq8nlVVNwG7A1cADwf+qdOqJEmS5qBhgtca7fWuwLFV9bsO65EkSZqzhvnJoC8n+TFwK/CqJPOAP3VbliRJ0twza49XVR0IPBlYWFV3AH8E9uq6MEmSpLlmmMH1awGvBj7aTtoEWNhlUZIkSXPRMGO8PgncDjylvX8F8K7OKpIkSZqjhgleW1bVIcAdAFV1K5BOq5IkSZqDhgletydZEyiAJFsCt3ValSRJ0hw0zLca3w58Fdg8yTHAdsBLuixKkiRpLpo1eFXV6UnOBZ5Ec4jxdVV1XeeVSZIkzTHD/lbjpsBqwL2BpyXZp7uSJEmS5qZZe7ySHAk8BrgEuLudXMAXOqxLkiRpzhlmjNeTqmrrziuRJEma44Y51Pi9JAYvSZKk5TRM8FpEE75+kuTCJBcluXC2hZJsnuSbSS5NckmS17XTD0ry2yTnt5ddl/dJSJIkrQyGOdR4JPAi4CL+PMZrGHcCb6iqc5OsA5yT5PR23vur6r1LV6okSdLKbZjg9euqOmlpV1xVVwFXtbdvTnIpzbcjJUmSVknDHGr8cZLPJHl+kn0mLkvTSJL5wGOBH7STXtMetjwyyfrTLHNAksVJFi9ZsmRpmpMkSRpLwwSvNWl+IuhZwB7tZfdhG0iyNvB54PVVdRPwUWBLYAFNj9ihUy1XVYdV1cKqWjhv3rxhm5MkSRpbw5y5fr9lXXmSNWhC1zFV9YV2fdcMzD8c+Mqyrl+SJGllMm3wSvKmqjokyYdofyB7UFW9dqYVJwlwBHBpVb1vYPrG7fgvgGcDFy9T5ZIkSSuZmXq8ftReL17GdW9H+23IJOe3094CPD/JApowdznwimVcvyRJ0kplpuD1WuArVbVoWVZcVd+m+VHtyU5ZlvVJkiSt7GYaXL9hb1VIkiStAmbq8VpvptNGTAyWlyRJ0nBmCl7r0pw2YqrDhQUYvCRJkpbCTMHrV1X10t4qkSRJmuNmGuM1VU+XJEmSltFMwetFvVUhSZK0Cpg2eFWVJzaVJElagWb9ySANZ/6BJy/X8pcfvNucqEGSJE1v2h6vJGe01+/prxxJkqS5a6Yer42TPB3YM8lxTBpsX1XndlqZJEnSHDNT8HobcCCwGfC+SfMKeGZXRUmSJM1F0wavqjoBOCHJv1bVO3usSZIkaU6adXB9Vb0zyZ7A09pJZ1bVV7otS5Ikae6Z6TxeACR5N/A64Eft5XXtNEmSJC2FYU4nsRuwoKruBkiyCDgP+OcuC5MkSZprZu3xaq03cHvdDuqQJEma84bp8Xo3cF6Sb9KcUuJp2NslSZK01IYZXH9skjOBJ9AErzdX1dVdFyZJkjTXDPWTQVV1FXBSx7VIkiTNaf5Wo1Yofy9SkqTpDTu4XpIkSctpxuCV5F5JLu6rGEmSpLlsxuDVnrvrgiQP7qkeSZKkOWuYMV4bA5ck+SHwh4mJVbXnTAsl2Rw4GngQcDdwWFV9IMkGwGeB+cDlwN9X1Q3LVL0kSdJKZJjg9Y5lXPedwBuq6twk6wDnJDkdeAlwRlUdnORA4EDgzcvYhiRJ0kpjmPN4nZVkC2Crqvp6krWA1YZY7irgqvb2zUkuBTYF9gK2bx+2CDgTg5ckSVoFDPMj2fsDJwAfbydtCpy4NI0kmQ88FvgBsFEbyibC2QOnWeaAJIuTLF6yZMnSNCdJkjSWhjmdxKuB7YCbAKrqMqYJS1NJsjbweeD1VXXTsMtV1WFVtbCqFs6bN2/YxSRJksbWMMHrtqq6feJOktWBGmblSdagCV3HVNUX2snXJNm4nb8xcO3SlSxJkrRyGiZ4nZXkLcCaSXYCPgd8ebaFkgQ4Ari0qt43MOskYN/29r7Al5auZEmSpJXTMMHrQGAJcBHwCuAU4K1DLLcd8CLgmUnOby+7AgcDOyW5DNipvS9JkjTnDfOtxruTLKIZGF/AT6pq1kONVfVtINPM3mGpqpQkSZoDZg1eSXYDPgb8nCZIPSTJK6rq1K6LkyRJmkuGOYHqocAzqupnAEm2BE4GDF6SJElLYZgxXtdOhK7WL/CbiJIkSUtt2h6vJPu0Ny9JcgpwPM0Yr+cAZ/dQmyRJ0pwy06HGPQZuXwM8vb29BFi/s4okSZLmqGmDV1Xt12chkiRJc90w32p8CPCPwPzBx1fVnt2VJUmSNPcM863GE2nOQP9l4O5Oq5EkSZrDhglef6qqD3ZeiSRJ0hw3TPD6QJK3A6cBt01MrKpzO6tKkiRpDhomeD2a9jcX+fOhxmrvS5IkaUjDBK9nAw+tqtu7LkaSJGkuG+bM9RcA63VchyRJ0pw3TI/XRsCPk5zNPcd4eToJSZKkpTBM8Hp751VIkiStAmYNXlV1Vh+FSJIkzXXDnLn+ZppvMQLcG1gD+ENV3b/LwiRJkuaaYXq81hm8n2RvYNuuCpIkSZqrhvlW4z1U1Yl4Di9JkqSlNsyhxn0G7t4LWMifDz1KkiRpSMN8q3GPgdt3ApcDe3VSjSRJ0hw2zBiv/fooRJIkaa6bNngledsMy1VVvXOmFSc5EtgduLaqHtVOOwjYH1jSPuwtVXXKUlUsSZK0kpppcP0fprgAvAx48xDrPgrYeYrp76+qBe3F0CVJklYZ0/Z4VdWhE7eTrAO8DtgPOA44dLrlBpb/VpL5K6BGSZKkOWHG00kk2SDJu4ALaULa46rqzVV17XK0+ZokFyY5Msn6M7R9QJLFSRYvWbJkuodJkiStNKYNXkn+H3A2cDPw6Ko6qKpuWM72PgpsCSwArmKGnrOqOqyqFlbVwnnz5i1ns5IkSaM3U4/XG4BNgLcCVya5qb3cnOSmZWmsqq6pqruq6m7gcDwDviRJWoXMNMZrqc9qP5skG1fVVe3dZwMXr+g2JEmSxtUwJ1BdJkmOBbYHNkxyBfB2YPskC2jOfH858Iqu2pckSRo3nQWvqnr+FJOP6Ko9SZKkcbfCDydKkiRpagYvSZKknhi8JEmSemLwkiRJ6onBS5IkqScGL0mSpJ4YvCRJknpi8JIkSeqJwUuSJKknBi9JkqSeGLwkSZJ6YvCSJEnqicFLkiSpJwYvSZKknhi8JEmSemLwkiRJ6onBS5IkqScGL0mSpJ4YvCRJknpi8JIkSeqJwUuSJKknBi9JkqSeGLwkSZJ60lnwSnJkkmuTXDwwbYMkpye5rL1ev6v2JUmSxk2XPV5HATtPmnYgcEZVbQWc0d6XJElaJXQWvKrqW8DvJk3eC1jU3l4E7N1V+5IkSeOm7zFeG1XVVQDt9QOne2CSA5IsTrJ4yZIlvRUoSZLUlbEdXF9Vh1XVwqpaOG/evFGXI0mStNz6Dl7XJNkYoL2+tuf2JUmSRqbv4HUSsG97e1/gSz23L0mSNDJdnk7iWOB7wCOSXJHkZcDBwE5JLgN2au9LkiStElbvasVV9fxpZu3QVZuSJEnjbGwH10uSJM01Bi9JkqSeGLwkSZJ6YvCSJEnqicFLkiSpJwYvSZKknhi8JEmSemLwkiRJ6onBS5IkqScGL0mSpJ4YvCRJknpi8JIkSeqJwUuSJKknq4+6AGlFmn/gycu9jssP3m2lr0GSNJ7s8ZIkSeqJwUuSJKknBi9JkqSeGLwkSZJ6YvCSJEnqicFLkiSpJwYvSZKknhi8JEmSejKSE6gmuRy4GbgLuLOqFo6iDkmSpD6N8sz1z6iq60bYviRJUq881ChJktSTUfV4FXBakgI+XlWHTX5AkgOAAwAe/OAH91yetHIbh9+LXN4a/L1KSXPRqHq8tquqxwG7AK9O8rTJD6iqw6pqYVUtnDdvXv8VSpIkrWAjCV5VdWV7fS3wRWDbUdQhSZLUp96DV5L7JVln4jbwLODivuuQJEnq2yjGeG0EfDHJRPufqaqvjqAOSZKkXvUevKrqF8A2fbcrSZI0ap5OQpIkqSejPIGqJHXKU1pIGjf2eEmSJPXE4CVJktQTg5ckSVJPDF6SJEk9MXhJkiT1xG81SlKHRv3NynH4wXRJf2aPlyRJUk8MXpIkST0xeEmSJPXE4CVJktQTg5ckSVJP/FajJKlT4/DNylF/u9QaxqeGUb8e7fGSJEnqicFLkiSpJwYvSZKknhi8JEmSemLwkiRJ6onBS5IkqScGL0mSpJ4YvCRJknpi8JIkSerJSIJXkp2T/CTJz5IcOIoaJEmS+tZ78EqyGvARYBdga+D5Sbbuuw5JkqS+jaLHa1vgZ1X1i6q6HTgO2GsEdUiSJPUqVdVvg8nfATtX1cvb+y8CnlhVr5n0uAOAA9q7jwB+shzNbghctxzLrwjWYA3j0r41WMO41TDq9q3BGlZ0DVtU1bypZqy+HCtdVpli2l+kv6o6DDhshTSYLK6qhStiXdZgDSt7+9ZgDeNWw6jbtwZr6LOGURxqvALYfOD+ZsCVI6hDkiSpV6MIXmcDWyV5SJJ7A88DThpBHZIkSb3q/VBjVd2Z5DXA14DVgCOr6pKOm10hhyyXkzU0rGH07YM1TLCGxqhrGHX7YA0TrKHRWQ29D66XJElaVXnmekmSpJ4YvCRJknpi8JIkSeqJwasjSf4qyQ5J1p40fecR1XP0iNrdNskT2ttbJ/m/SXbtqe0nJrl/e3vNJO9I8uUk70mybh81TFHTU9tt8KxRtD8qSe6d5MVJdmzvvyDJh5O8OskaPdXw2iSbz/5ISauSJFsmeWOSDyQ5NMkru3yPWKUG1yfZr6o+2UM7rwVeDVwKLABeV1VfauedW1WP67j9yafnCPAM4BsAVbVnl+0P1PF2mt/kXB04HXgicCawI/C1qvr3jtu/BNim/SbtYcAfgROAHdrp+3TZflvDD6tq2/b2/jSviy8CzwK+XFUHd13DOEhyDM3rYC3gRmBt4As0+yJVtW8PNfwe+APwc+BY4HNVtaTrdjW7JA+sqmtHXYdWPe379R7AWcCuwPnADcCzgVdV1ZkrvNGqWmUuwK97auciYO329nxgMU34Ajivh/bPBT4NbA88vb2+qr399B6390U0pwxZC7gJuH87fU3gwh7av3Rwm0yad35P2+C8gdtnA/Pa2/cDLuqphnWBg4EfA9e3l0vbaev1VMOF7fXqwDXAau399PFamNgXNL38zwKOAJYAXwX2Bdbpo4ZZ6jt11DX09Dw3mHR5AHA5sD6wQU81PAj4KPCRtv2D2v9XxwMbj3obrSoX4P7Au4FPAS+YNO+/eqrhooH/R2sBZ7a3H9zV+/WcO9SY5MJpLhcBG/VUxmpVdQtAVV1OE3x2SfI+pv7JpBVtIXAO8C/A76tJ7LdW1VlVdVYP7U+4s6ruqqo/Aj+vqpsAqupW4O4e2r84yX7t7QuSLARI8nDgjh7aB7hXkvWTPICmZ2cJQFX9AbizpxqOp/kEt31VPaCqHkDTA3oD8LmearhXe8LkdWj+uU10498H6OVQI1BVdXdVnVZVLwM2Af4L2Bn4RR8FJHncNJfH0/SOj1SSU3to5jqa/08Tl8XApjQfGBf30D7AUcCPgN8A3wRuBXYD/hv4WB8FDA47SbJukiPa96rPJOnlvSrJuUnemmTLPtqbwidp3hM/DzwvyeeT3Ked96Qe65g4p+l9aP5HUVW/pqP/TaP4rcaubQT8Dc2byqAA3+2phquTLKiq8wGq6pYkuwNHAo/uuvGquht4f5LPtdfXMJp9fXuStdrg9fiJie2x8z6C18uBDyR5K80/++8l+Q3NP9uX99A+NAHjHJrXXyV5UFVd3Y796yOEA8yvqvcMTqiqq4H3JHlpTzUcQdPjthrNB4LPJfkFzT/X43qq4R7bu6ruoPnVjJOSrNlTDWfTHNKYat+v10cBSaYb6hD6CX9vohlu8E9VdVFb0y+r6iE9tD1ho6r6UNv2qwb+Pj6U5GU91fAfND2uAIfSHJXYA9gH+Diwdw81rE/zuvtmkqtpDsF/tqr6+hm/Lavqb9vbJyb5F+AbSXoZDtP6BHB2ku8DTwPeA5BkHvC7Lhqcc2O8khwBfLKqvj3FvM9U1Qt6qGEzmt6eq6eYt11VfafrGia1uRuwXVW9ped271NVt00xfUOa7vyLeqpjHeChNOHziqq6po92Z5JkLZp//r/soa3TgK8Diyaee/uJ+iXATlW1Y9c1tG1uAlBVVyZZj+bN99dV9cOe2n94Vf20j7ZmqOFi4NlVddkU835TVZ0P/k9yF9OHvydVVechtP0f+X6aD0FvBy6oqod23e5A+xdU1Tbt7XdV1VsH5l1UVZ1/QB4c75vk/KpaMDDvHvd7quGvgefTBL9LgWOrqtMzyCe5FHhk21kwMW1fmnC+dlVt0WX7A20+EvhfwMVV9ePO25trwUvSPSVZHzgQ2IumR7hoxlmdBLynqjr5VKe/lOTvaMb2/WSKeXtX1Yk91DDy8DfQ3h40PaDzq+pBPbb7b8AhE0NCBqY/DDi4qv6uhxquACaGn7yapven2nkXVtVjeqjhL77slWQ1YCfguVW139RLrrD2DwFOq6qvT5q+M/Chqtqqy/ZHxeAlrQKS/BWwGfD9wTebJDtX1VenX1IrWrsvNgV+MIp9MSbh73+2AXAXTei4uM/X4xjsh7dPmvRfVbUkyYNoQuGLe6jhuKp6XtftzFLDdPthl6rqY8xh7wxe0hw36tOb6M/GfV+kh1PujMM2SPKPwGtGWcNM+tgP41DDuO+HrszFwfWS7ml/4PHtlzzmAyckmV9VH6C/Af5qjPu+eAfNN826NA7b4IAxqGEmfeyHcahh3PdDJwxe0tx3j9ObJNme5h/cFszhf25jauT7IsmF082in1PujHwbjEMNY7AfxqGGke+HUTB4SXPfSE9vonsYh30x6lPujMM2GIcaRr0fxqGGcdgPvTN4SXPfi5l0staquhN4cZKPj6akVdY47Iuv0HxV//zJM5Kc2UP747ANxqGGUe+HcahhHPZD7xxcL0mS1JM595NBkiRJ48rgJUmS1BODl6ROJLkryflJLk7yufZnkpZm+U2SnNDeXpBk14F5eyY5cAXXOXGZn2TWgcVJPpFk6xnmn5n2h9mXsa6j2pOdSppDHFwvqSu3TvzeXJJjgFfS/ETKUNof6p0IHguAhcAp7byTaH7yaIXWOeApQ9TX1w+tS5pD7PGS1If/Bh6WZIMkJya5MMn3kzwGIMnTB3qczkuyTtvzdHGSewP/Bjy3nf/cJC9J8uF22S2SnNGu84wkD26nH5Xkg0m+m+QXS9N7lOSW9nr7tufqhCQ/TnJMkrTzzkyyMMlqbVsXJ7koyf8ZWNVzkvwwyU/T/Agx7eP/X5Kz25pf0U5Pkg8n+VGSk4EHLvdWlzR2DF6SOpVkdWAX4CKas2Gf1/4A8FuAo9uHvRF4ddvz9NfArRPLV9XtwNuAz1bVgqr67KQmPgwc3a7zGOCDA/M2Bp4K7A4cPE2Jaw6Evi9OMf+xwOuBrYGHAttNmr8A2LSqHlVVj+aeZ/tevaq2bZef+G2+lwG/r6onAE8A9k/yEODZwCNozl+0P0P0ukla+XioUVJX1kxyfnv7v4EjaH4U+W8BquobSR6QZF3gO8D72kOSX6iqK9qOpWE8Gdinvf0p4JCBeSdW1d3Aj5JMdybuqQ41DvphVV0B0D6f+cC3B+b/Anhokg8BJwOnDcz7Qnt9TrscwLOAxwz0wK0LbAU8DTi2qu4CrkzyjRlqkrSSMnhJ6spfBJpMnaaqqg5uD6/tCnw/yY7An5ax3cGTE9422Pwyrm9wHXcx6f9mVd2QZBuaM4C/Gvh74KWTlh1cLsA/VtXXBtfTfnnAEytKc5yHGiX16VvAP0Azfgq4rqpuSrJlVV1UVe8BFgN/NWm5m4F1plnnd4Hntbf/gXv2RnUuyYbAvarq88C/Ao+bZZGvAf87yRrt8g9Pcj+abfO8dgzYxsAzuqxb0mjY4yWpTwcBn0zz47x/BPZtp78+yTNoeoZ+BJxKMz5rwjeBA9tDfe+etM7XAkcm+SdgCbBfZ9VPbVOa5zTxQfafZ3n8J2gOO57b9gAuAfYGvgg8k2Ys3E+Bs7ooVtJo+ZNBkiRJPfFQoyRJUk8MXpIkST0xeEmSJPXE4CVJktQTg5ckSVJPDF6SJEk9MXhJkiT15P8DycC/CefPQvwAAAAASUVORK5CYII=
-"
->
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>
-
-
-We can see that Red Bull F1 made it to the podium 51.204819277108435 % of the time and won the race 24.69879518072289 % of the time
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>So now we have our first plot. This plot shows us how frequently Red Bull finished in one position.
-Clearly we can see that out of the 154 races between 2010 - 2013, the Red Bull Racing team finished on the top of the podium
-over 40 times.
-Along with that, they finsihed on the podium (1st, 2nd, or 3rd) over 80 times. This accounts for more than half of their finishes
-So this preliminary graph shows us that Red Bull pulled in a majority of the points to be gotten over these four years.</p>
-<p>The most suprising fact was that out of 154 races, a Red Bull driver was on the podium for more than half of the races</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Mercedez-Benz-Step-1">Mercedez Benz Step 1<a class="anchor-link" href="#Mercedez-Benz-Step-1">&#182;</a></h2><h3 id="Data-Filtering-2016---2019">Data Filtering 2016 - 2019<a class="anchor-link" href="#Data-Filtering-2016---2019">&#182;</a></h3><p>This step is to get the race data of MB from 2016 - 2019 just like we did with Red Bull</p>
+<h3 id="Mercedes-Benz-Data-Filtering-2016---2019">Mercedes Benz Data Filtering 2016 - 2019<a class="anchor-link" href="#Mercedes-Benz-Data-Filtering-2016---2019">&#182;</a></h3><p>This step is to get the race data of MB from 2016 - 2019 just like we did with Red Bull</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15117,13 +15020,110 @@ So this preliminary graph shows us that Red Bull pulled in a majority of the poi
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>So now we have the races between 2010 - 2013 for Red Bull Racing and can start our analysis</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Red-Bull-Data-Exploration-Step-1">Red Bull Data Exploration Step 1<a class="anchor-link" href="#Red-Bull-Data-Exploration-Step-1">&#182;</a></h2>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[474]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">time_frame</span><span class="p">[</span><span class="s1">&#39;positionOrder&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Red Bull F1 Team Finishing Positions Frequency Chart&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of Times&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Position Finished&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Creating a map which will count the frequency of each finishing position from 2010 - 2013</span>
+<span class="n">redbull_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="n">time_frame</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;positionOrder&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">redbull_dict</span><span class="p">:</span>
+        <span class="n">redbull_dict</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;positionOrder&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">redbull_dict</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;positionOrder&#39;</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># Calculating the winning percentage and the podium percentage </span>
+<span class="n">wins_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">redbull_dict</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">166</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">total_podiums</span> <span class="o">=</span> <span class="n">redbull_dict</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">redbull_dict</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">redbull_dict</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">podiums_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_podiums</span><span class="o">/</span><span class="mi">166</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;We can see that Red Bull F1 made it to the podium&quot;</span><span class="p">,</span><span class="n">podiums_ratio</span><span class="p">,</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f the time and won the race&quot;</span><span class="p">,</span><span class="n">wins_ratio</span><span class="p">,</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f the time&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedImage jp-OutputArea-output ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>
+
+
+We can see that Red Bull F1 made it to the podium 51.204819277108435 % of the time and won the race 24.69879518072289 % of the time
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>So now we have our first plot. This plot shows us how frequently Red Bull finished in one position.
+Clearly we can see that out of the 154 races between 2010 - 2013, the Red Bull Racing team finished on the top of the podium
+over 40 times.
+Along with that, they finsihed on the podium (1st, 2nd, or 3rd) over 80 times. This accounts for more than half of their finishes
+So this preliminary graph shows us that Red Bull pulled in a majority of the points to be gotten over these four years.</p>
+<p>The most suprising fact was that out of 154 races, a Red Bull driver was on the podium for more than half of the races</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>So we can see there is null data ( \N ) but that will not affect us in our analysis, since we are not going to be able to compare car times across generations since each year there are different versions of cars. Since the cars we are comparing do not overlap, we can not compare their lap times because the engineering of each car is not the same</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Mercedes-Benz-Exploration-Step-1">Mercedes Benz Exploration Step 1<a class="anchor-link" href="#Mercedes-Benz-Exploration-Step-1">&#182;</a></h3>
+<h2 id="Mercedes-Benz-Exploration-Step-1">Mercedes Benz Exploration Step 1<a class="anchor-link" href="#Mercedes-Benz-Exploration-Step-1">&#182;</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -15220,8 +15220,9 @@ success than Red Bull. There was over 15% more podium percentage and 10 percent 
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Step-1-Results-and-Analysis">Step 1 Results and Analysis<a class="anchor-link" href="#Step-1-Results-and-Analysis">&#182;</a></h2><p>So now, comparing the amazing success of these teams we see that Mercedes Benz over these four years had more
 success than Red Bull. There was over 15% more podium percentage and 10 percent more winning percentage</p>
-<p>So far, we see that Mercedes has the upper hand when it comes to winning races and finishing in the top 3 in general.</p>
+<p>So far, we see that Mercedes has the upper hand when it comes to winning races and finishing in the top 3 in general. What this data also shows us is that Mercedes Benz was that even though their data set was 12 races bigger (something that we can not adjust because it wouldn't be fair to Red Bull), Mercedez Benz still had the higher ratio of wins. In racing, more races = more wear on car engines and body parts = less productive performance. Based on our preliminary exploration, we see the Mercedes Benz didn't lose performance even when they had atleast 2280 miles of wear more on their car. (The minimum race distance in F1 is <a href="https://www.tutorialspoint.com/formula_one/formula_one_quick_guide.htm#:~:text=The%20minimum%20total%20distance%20of,260%20km%20or%20160%20miles.">190 miles</a>)</p>
 <p>To recap on Step 1, one alternative to our data wrangling apprach would be to manually go through and select the records we want</p>
+<p>While on the topic of wear and tear on the car, lets see how consistent these cars were. We will define a DNF as Did Not Finish.</p>
 
 </div>
 </div>
@@ -15229,6 +15230,7 @@ success than Red Bull. There was over 15% more podium percentage and 10 percent 
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Step-2-DNF-Consistency">Step 2 DNF Consistency<a class="anchor-link" href="#Step-2-DNF-Consistency">&#182;</a></h2><p>Lets begin the process of digging deeper and looking into how consistent each team was.</p>
 <p>The first way to measure how consistent they were is to look at how good their engineering department was, basically how many times did they fail to finish a race and score 0 points?</p>
+<p>The DNF shows is this data. In our table it is any statusId that is not 1. 1 means the racer finished with no problem. Any number other than that there was a problem such as a crash, engineering failure, pitstop failure, and finished too low.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
